@@ -2,8 +2,7 @@
 <nav class="navbar navbar-light bg-primary">
   <span class="navbar-brand" style="color: white; justify-content: center;">Six Ladders Admin Portal</span>
 </nav>
-<div class="d-flex justify-content-start mt-4" data-ng-init="init()">
-
+<div class="d-flex justify-content-start mt-4" ng-init="getIndustries()">
   <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
     <li ngbNavItem="Industry">
       <a ngbNavLink>Industry</a>
@@ -18,7 +17,11 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let industry of industries">
+          <tr *ngFor="let industry of industries | paginate : {
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+          };">
             <th scope="row">{{ industry.nIndustryId }}</th>
             <td>
 
@@ -31,14 +34,10 @@
         </table>
 
         <div class="d-flex justify-content-between p-2">
-          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)=" getIndustries()">
-          </ngb-pagination>
+          <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+          </pagination-controls>
 
-          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="getIndustries()">
-            <option [ngValue]="2">2 items per page</option>
-            <option [ngValue]="4">4 items per page</option>
-            <option [ngValue]="6">6 items per page</option>
-          </select>
+
         </div>
       </ng-template>
     </li>
@@ -57,7 +56,11 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let edu of educationInstitutes">
+          <tr *ngFor="let edu of educationInstitutes | paginate : {
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+          };">
             <th scope="row">{{  edu.nEducationId }}</th>
             <td>
 
@@ -70,14 +73,8 @@
         </table>
 
         <div class="d-flex justify-content-between p-2">
-          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)=" getStates()">
-          </ngb-pagination>
-
-          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)=" getStates()">
-            <option [ngValue]="2">2 items per page</option>
-            <option [ngValue]="4">4 items per page</option>
-            <option [ngValue]="6">6 items per page</option>
-          </select>
+          <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+          </pagination-controls>
         </div>
       </ng-template>
     </li>
@@ -99,7 +96,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let ct of cities">
+        <tr *ngFor="let ct of cities | paginate : {
+          itemsPerPage: tableSize,
+          currentPage: page,
+          totalItems: count
+        };">
           <th scope="row">{{  ct.nCityId }}</th>
           <td>
 
@@ -113,14 +114,8 @@
       </table>
 
       <div class="d-flex justify-content-between p-2">
-        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)=" getCity()">
-        </ngb-pagination>
-
-        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)=" getCity()">
-          <option [ngValue]="2">2 items per page</option>
-          <option [ngValue]="4">4 items per page</option>
-          <option [ngValue]="6">6 items per page</option>
-        </select>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
       </div>
     </ng-template>
   </li>
@@ -139,7 +134,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let sts of states">
+        <tr *ngFor="let sts of states | paginate : {
+          itemsPerPage: tableSize,
+          currentPage: page,
+          totalItems: count
+        };">
           <th scope="row">{{  sts.nStateId }}</th>
           <td>
 
@@ -152,14 +151,8 @@
       </table>
 
       <div class="d-flex justify-content-between p-2">
-        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)=" getStates()">
-        </ngb-pagination>
-
-        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)=" getStates()">
-          <option [ngValue]="2">2 items per page</option>
-          <option [ngValue]="4">4 items per page</option>
-          <option [ngValue]="6">6 items per page</option>
-        </select>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
       </div>
     </ng-template>
   </li>

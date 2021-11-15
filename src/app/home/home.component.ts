@@ -14,7 +14,11 @@ import {CityService } from '../services/city.service'
 export class HomeComponent implements OnInit {
 
   title = 'six-ladders-admin';
-  active = 'top';
+  active = 'Industry';
+  page: any;
+  count = 0;
+  tableSize = 3;
+  tableSizes = [3, 6, 9, 12];
   displayedColumns: string[] = ['id', 'name', 'action'];
   industries: any=[]
   industriesList: any=[]
@@ -25,26 +29,23 @@ export class HomeComponent implements OnInit {
   cities: any=[];
   cityList: any=[];
   @ViewChild(MatTable, { static: true })
-  table!: MatTable<any>;
-
-  page = 1;
-  pageSize = 4;
-  collectionSize = 10;
+  table!: MatTable<any>
   closeResult = '';
 
   constructor(private indservice: IndustryService, private edu: EducationService,
   private modalService: NgbModal, private sts: StateService, private ct: CityService ) {
     // this.refreshCountries();
-    this.getIndustries()
+
 
   }
-  openAddEducation(content: any, id: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  onTableDataChange(event: any){
+    this.page = event;
+    this.getIndustries();
+    this.getCity();
+    this.getEducation();
+    this.getStates();
   }
+
   open(content: any,id: any) {
     this.edu.id=id;
     this.indservice.id=id;
@@ -54,13 +55,15 @@ export class HomeComponent implements OnInit {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+
     });
   }
   ngOnInit(): void {
-   this.getIndustries();
+    this.getIndustries();
     this.getCity();
     this.getEducation();
     this.getStates();
+
   }
 
   close(): any{

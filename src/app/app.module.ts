@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { EditCityComponent } from './city/edit-city/edit-city.component';
 import { AddCityComponent } from './city/add-city/add-city.component';
 import { DeleteCityCityComponent } from './city/delete-city-city/delete-city-city.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,10 @@ import { DeleteCityCityComponent } from './city/delete-city-city/delete-city-cit
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
+
+    //FontAwesomeModule
   ],
   providers: [IndustryService],
   bootstrap: [AppComponent]
