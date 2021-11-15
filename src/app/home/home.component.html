@@ -1,0 +1,206 @@
+
+<nav class="navbar navbar-light bg-primary">
+  <span class="navbar-brand" style="color: white; justify-content: center;">Six Ladders Admin Portal</span>
+</nav>
+<div class="d-flex justify-content-start mt-4" data-ng-init="init()">
+
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
+    <li ngbNavItem="Industry">
+      <a ngbNavLink>Industry</a>
+      <ng-template ngbNavContent>
+        <button class="btn btn-sm btn-outline-primary" style="margin-left: 75%;" (click)="open(addIndustry, 0 )">add New</button>
+        <table class=" table table-striped" style="width: 800px;">
+          <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let industry of industries">
+            <th scope="row">{{ industry.nIndustryId }}</th>
+            <td>
+
+              {{ industry.sTitle  }}
+            </td>
+            <td><a (click)="open(editIndustry, industry.nIndustryId )"><i class='fas fa-pencil-alt'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteIndustry, industry.nIndustryId )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
+
+          </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)=" getIndustries()">
+          </ngb-pagination>
+
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="getIndustries()">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+          </select>
+        </div>
+      </ng-template>
+    </li>
+    <li ngbNavItem="Education">
+      <a ngbNavLink>Education</a>
+      <ng-template ngbNavContent>
+
+        <button class="btn btn-sm btn-outline-primary" style="margin-left: 75%;" (click)="open(addEducation, 0 )">add New</button>
+        <table class="table table-striped" style="width: 800px;">
+          <thead>
+          <tr>
+
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let edu of educationInstitutes">
+            <th scope="row">{{  edu.nEducationId }}</th>
+            <td>
+
+              {{   edu.sTitle }}
+            </td>
+            <td><a (click)="open(editEducation, edu.nEducationId )"><i class='fas fa-pencil-alt'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteEducation, edu.nEducationId )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
+
+          </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)=" getStates()">
+          </ngb-pagination>
+
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)=" getStates()">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+          </select>
+        </div>
+      </ng-template>
+    </li>
+
+
+  <li ngbNavItem="Cities">
+    <a ngbNavLink>Cities</a>
+    <ng-template ngbNavContent>
+
+      <button class="btn btn-sm btn-outline-primary" style="margin-left: 75%;" (click)="open(addCity, 0 )">add New</button>
+      <table class="table table-striped" style="width: 800px;">
+        <thead>
+        <tr>
+
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col">State Id</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ct of cities">
+          <th scope="row">{{  ct.nCityId }}</th>
+          <td>
+
+            {{   ct.sTitle }}
+          </td>
+          <td>{{ct.nStateId}}</td>
+          <td><a (click)="open(editCity,  ct.nCityId  )"><i class='fas fa-pencil-alt'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteEducation, ct.nCityId   )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
+
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)=" getCity()">
+        </ngb-pagination>
+
+        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)=" getCity()">
+          <option [ngValue]="2">2 items per page</option>
+          <option [ngValue]="4">4 items per page</option>
+          <option [ngValue]="6">6 items per page</option>
+        </select>
+      </div>
+    </ng-template>
+  </li>
+  <li ngbNavItem="States">
+    <a ngbNavLink>States</a>
+    <ng-template ngbNavContent>
+
+      <button class="btn btn-sm btn-outline-primary" style="margin-left: 75%;" (click)="open(addState, 0 )">add New</button>
+      <table class="table table-striped" style="width: 800px;">
+        <thead>
+        <tr>
+
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let sts of states">
+          <th scope="row">{{  sts.nStateId }}</th>
+          <td>
+
+            {{   sts.sTitle }}
+          </td>
+          <td><a (click)="open(editState, sts.nStateId )"><i class='fas fa-pencil-alt'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteState, sts.nStateId  )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
+
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)=" getStates()">
+        </ngb-pagination>
+
+        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)=" getStates()">
+          <option [ngValue]="2">2 items per page</option>
+          <option [ngValue]="4">4 items per page</option>
+          <option [ngValue]="6">6 items per page</option>
+        </select>
+      </div>
+    </ng-template>
+  </li>
+
+
+</ul>
+
+
+  <div [ngbNavOutlet]="nav" class="ml-4"></div>
+</div>
+<ng-template #addEducation let-modal>
+  <app-add-education></app-add-education>
+</ng-template>
+<ng-template #deleteEducation let-modal>
+  <app-delete></app-delete>
+</ng-template>
+<ng-template #editEducation let-modal>
+  <app-edit></app-edit>
+</ng-template>
+<ng-template #addIndustry let-modal>
+  <app-add-industry></app-add-industry>
+</ng-template>
+<ng-template #deleteIndustry let-modal>
+  <app-delete-industry></app-delete-industry>
+</ng-template>
+<ng-template #editIndustry let-modal>
+  <app-edit-industry></app-edit-industry>
+</ng-template>
+
+<ng-template #editState let-modal>
+  <app-edit-state></app-edit-state>
+</ng-template>
+<ng-template #deleteState let-modal>
+  <app-delete-state></app-delete-state>
+</ng-template>
+<ng-template #addState let-modal>
+  <app-add-state></app-add-state>
+</ng-template>
+<ng-template #addCity let-modal>
+  <app-add-city></app-add-city>
+</ng-template>
+<ng-template #editCity let-modal>
+  <app-edit-city></app-edit-city>
+</ng-template>

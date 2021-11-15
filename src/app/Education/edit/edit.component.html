@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add new Education</h4>
+  <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')"> -->
+    <!-- <span aria-hidden="true">&times;</span>
+  </button> -->
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="form-group">
+      <!-- <label for="nEducationId">nEducationId</label>
+      <div class="input-group">
+        <input id="nEducationId" type="number" formControlName="nEducationId" class="form-control" placeholder="nEducationId" name="nEducationId">
+      </div> -->
+      <label for="sTitle">Title</label>
+      <div class="input-group">
+        <input id="sTitle" formControlName="sTitle" class="form-control" placeholder="Title" name="sTitle">
+      </div>
+      <label for="bActive">BActive</label>
+      <div class="input-group">
+        <input type="number" id="bActive" formControlName="bActive" class="form-control" placeholder="bActive" name="bActive">
+      </div>
+      <label for="nEditedBy">nEditedBy</label>
+      <div class="input-group">
+        <input type="number" id="nEditedBy" formControlName="nEditedBy" class="form-control" placeholder="nEditedBy" name="nEditedBy">
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+   <button type="button" class="btn btn-outline-dark" (click)="save()" type="submit">Save</button>
+</div>
+
+
+

@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/six-ladders-admin",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
