@@ -1,0 +1,61 @@
+<nav class="navbar navbar-light bg-primary">
+  <span class="navbar-brand" style="color: white; justify-content: center;">Six Ladders Admin Portal</span>
+</nav>
+<div class="flex-container cont d-flex justify-content-center">
+
+  <div class="d-flex justify-content-center">
+  <mat-card style="height: fit-content; margin-top: 20px; width: 450px;">
+  <mat-card-title>Registration From</mat-card-title>
+  <h3>Welcome to six ladders Admin portal</h3>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field class="fullWidth" appearance="standard">
+        <mat-label>Email *</mat-label>
+        <input matInput type="text" name="SEmailId" formControlName="SEmailId">
+        <mat-error *ngIf="form.controls['SEmailId']?.errors?.required">field required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="mt-3">
+      <mat-form-field class="fullWidth" appearance="standard">
+        <mat-label>Password*</mat-label>
+        <input matInput type="password" name="SPassword" formControlName="SPassword" />
+        <mat-error *ngIf="form.controls['SPassword']?.errors?.required">field required</mat-error>
+      </mat-form-field>
+      </div>
+    <div class="mt-3">
+      <mat-form-field class="fullWidth" appearance="standard">
+        <mat-label>First Name*</mat-label>
+        <input matInput type="text" name="SFirstName" formControlName="SFirstName" />
+        <mat-error *ngIf="form.controls['SFirstName']?.errors?.required">field required</mat-error>
+      </mat-form-field>
+      </div>
+      <div class="mt-3">
+      <mat-form-field class="fullWidth" appearance="standard">
+        <mat-label>Last Name *</mat-label>
+        <input matInput type="text" name="SLastName" formControlName="SLastName" />
+        <mat-error *ngIf="form.controls['SLastName']?.errors?.required">field required</mat-error>
+      </mat-form-field>
+    </div>
+
+
+  </form>
+  <div class="justify-content-center mt-3">
+    <mat-label>Sign up with: </mat-label>
+  <a (click)="signInWithFB()"> <i class="fab fa-twitter-square"  style="font-size:36px; margin-right: 20px;"></i></a> <a  (click)="signInWithGoogle()" ><i class="fab fa-google-plus-square"  style="font-size:36px; margin-right: 20px;"></i></a> <a (click)="signInWithFB()"><i class="fab fa-facebook-square" style="font-size:36px;margin-right: 20px;"></i></a>
+  </div>
+  <div class="mt-3">
+    <p>Already have an account: <a href="">Login Here</a></p>
+  </div>
+  <div class="mt-5">
+
+    <button mat-raised-button color="primary" (click)="onSubmit()" cdkFocusInitial>Sign up</button>
+    <button mat-raised-button mat-dialog-close>Back</button>
+  </div>
+</mat-card>
+</div>
+<div class="footer">
+
+</div>
+</div>
+
+

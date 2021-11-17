@@ -1,14 +1,14 @@
-
+<div class="cont">
 <nav class="navbar navbar-light bg-primary">
   <span class="navbar-brand" style="color: white; justify-content: center;">Six Ladders Admin Portal</span>
 </nav>
-<div class="d-flex justify-content-start mt-4" ng-init="getIndustries()">
+<div class="d-flex justify-content-center mt-4" ng-init="getIndustries()">
   <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
-    <li ngbNavItem="Industry">
+    <li ngbNavItem="Industry"  class="justify-content-center">
       <a ngbNavLink>Industry</a>
-      <ng-template ngbNavContent>
+      <ng-template ngbNavContent  class="justify-content-center">
         <button class="btn btn-sm btn-outline-primary" style="margin-left: 75%;" (click)="open(addIndustry, 0 )">add New</button>
-        <table class=" table table-striped" style="width: 800px;">
+        <table class="justify-content-center table table-striped" style="width: 800px;">
           <thead>
           <tr>
             <th scope="col">id</th>
@@ -197,3 +197,4 @@
 <ng-template #editCity let-modal>
   <app-edit-city></app-edit-city>
 </ng-template>
+</div>

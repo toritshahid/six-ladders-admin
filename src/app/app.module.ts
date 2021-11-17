@@ -24,6 +24,18 @@ import { EditCityComponent } from './city/edit-city/edit-city.component';
 import { AddCityComponent } from './city/add-city/add-city.component';
 import { DeleteCityCityComponent } from './city/delete-city-city/delete-city-city.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SingupComponent } from './singup/singup.component';
+import { LoginComponent } from './login/login.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule} from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card'
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  SocialLoginModule,
+  SocialAuthServiceConfig
+} from 'angularx-social-login';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +51,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HomeComponent,
     EditCityComponent,
     AddCityComponent,
-    DeleteCityCityComponent
+    DeleteCityCityComponent,
+    SingupComponent,
+    LoginComponent
 
   ],
   imports: [
@@ -50,11 +64,31 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
-
-    //FontAwesomeModule
+    NgxPaginationModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatCardModule,
+    SocialLoginModule
   ],
-  providers: [IndustryService],
+  providers: [IndustryService,{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            '90896626709-msu64qivgjdc6njeh41hum5p30jdl7qc.apps.googleusercontent.com'
+          )
+        },
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider('566781031291616')
+        }
+      ]
+    } as SocialAuthServiceConfig,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
