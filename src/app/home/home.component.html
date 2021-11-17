@@ -8,15 +8,15 @@
       <a ngbNavLink>Industry</a>
       <ng-template ngbNavContent  class="justify-content-center">
         <button class="btn btn-sm btn-outline-primary" style="margin-left: 75%;" (click)="open(addIndustry, 0 )">add New</button>
-        <table class="justify-content-center table table-striped" style="width: 800px;">
+        <table class="justify-content-center table table-striped" style="width: 800px;color: white;">
           <thead>
-          <tr>
+          <tr class="bg-primary">
             <th scope="col">id</th>
             <th scope="col">Name</th>
             <th scope="col">Action</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody class="bg-primary">
           <tr *ngFor="let industry of industries | paginate : {
             itemsPerPage: tableSize,
             currentPage: page,
@@ -27,7 +27,7 @@
 
               {{ industry.sTitle  }}
             </td>
-            <td><a (click)="open(editIndustry, industry.nIndustryId )"><i class='fas fa-pencil-alt'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteIndustry, industry.nIndustryId )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
+            <td><a (click)="open(editIndustry, industry.nIndustryId )"><i class='fas fa-pencil-alt' style='color:darkgoldenrod'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteIndustry, industry.nIndustryId )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
 
           </tr>
           </tbody>
@@ -46,7 +46,7 @@
       <ng-template ngbNavContent>
 
         <button class="btn btn-sm btn-outline-primary" style="margin-left: 75%;" (click)="open(addEducation, 0 )">add New</button>
-        <table class="table table-striped" style="width: 800px;">
+        <table class="table table-striped bg-primary" style="width: 800px; color: white;">
           <thead>
           <tr>
 
@@ -66,7 +66,7 @@
 
               {{   edu.sTitle }}
             </td>
-            <td><a (click)="open(editEducation, edu.nEducationId )"><i class='fas fa-pencil-alt'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteEducation, edu.nEducationId )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
+            <td><a (click)="open(editEducation, edu.nEducationId )"><i class='fas fa-pencil-alt' style='color:darkgoldenrod'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteEducation, edu.nEducationId )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
 
           </tr>
           </tbody>
@@ -85,7 +85,7 @@
     <ng-template ngbNavContent>
 
       <button class="btn btn-sm btn-outline-primary" style="margin-left: 75%;" (click)="open(addCity, 0 )">add New</button>
-      <table class="table table-striped" style="width: 800px;">
+      <table class="table table-striped bg-primary" style="width: 800px; color: white;">
         <thead>
         <tr>
 
@@ -107,7 +107,7 @@
             {{   ct.sTitle }}
           </td>
           <td>{{ct.nStateId}}</td>
-          <td><a (click)="open(editCity,  ct.nCityId  )"><i class='fas fa-pencil-alt'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteEducation, ct.nCityId   )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
+          <td><a (click)="open(editCity,  ct.nCityId  )"><i class='fas fa-pencil-alt' style='color:darkgoldenrod'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteEducation, ct.nCityId   )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
 
         </tr>
         </tbody>
@@ -124,7 +124,7 @@
     <ng-template ngbNavContent>
 
       <button class="btn btn-sm btn-outline-primary" style="margin-left: 75%;" (click)="open(addState, 0 )">add New</button>
-      <table class="table table-striped" style="width: 800px;">
+      <table class="table table-striped bg-primary" style="width: 800px;color: white;">
         <thead>
         <tr>
 
@@ -144,7 +144,7 @@
 
             {{   sts.sTitle }}
           </td>
-          <td><a (click)="open(editState, sts.nStateId )"><i class='fas fa-pencil-alt'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteState, sts.nStateId  )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
+          <td><a (click)="open(editState, sts.nStateId )"><i class='fas fa-pencil-alt' style='color:darkgoldenrod'></i></a><span style="margin-left: 10px;"><a (click)="open(deleteState, sts.nStateId  )"><i class='fas fa-trash-alt' style='color: red;'></i></a></span></td>
 
         </tr>
         </tbody>

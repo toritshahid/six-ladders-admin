@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   active = 'Industry';
   page: any;
   count = 0;
-  tableSize = 3;
+  tableSize = 8;
   tableSizes = [3, 6, 9, 12];
   displayedColumns: string[] = ['id', 'name', 'action'];
   industries: any=[]
