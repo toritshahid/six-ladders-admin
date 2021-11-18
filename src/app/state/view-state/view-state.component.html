@@ -1,0 +1,77 @@
+<div class="flex-container cont justify-content-center">
+  <div class="container" ng-init="getStates()">
+    <div class="row">
+      <div class="col-3 mt-2">
+        <button mat-raised-button color="primary" (click)="open(addState,0)">+ADD NEW STATE</button>
+      </div>
+      <div class="col-6 mt-2">
+        <mat-form-field class="example-full-width" floatLabel="never" color="primary">
+          <input class="toolbar-search" type="text" #box (keyup)="doFilter(box.value)" matInput placeholder="search">
+          <mat-icon matSuffix style="font-size: 1.2em">search</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-3 mt-2 flex justify-content-right">
+        <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+      </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>
+          <div style="display: flex; align-items: center;">
+            <span mat-sort-header>{{column}}</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+      </ng-container>
+
+
+      <ng-container [matColumnDef]="'actions'">
+        <th mat-header-cell *matHeaderCellDef> actions </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="open(editState,element.nStateId)">
+            <mat-icon mat-icon-button color='primary'>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="open(deleteState, element.nStateId)">
+            <mat-icon mat-icon-button color="warn">delete</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 7, 10,20, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <!-- menu for column filtering-->
+  <mat-menu #menu="matMenu" class="matMenu">
+    <ng-template matMenuContent let-dataColumnName="columnName">
+      <div class="flex-column" (click)="$event.stopPropagation();">
+        <div class="mb-5 fullWidth">
+          <mat-form-field class="fullWidth" appearance="outline">
+            <mat-label>write a value*</mat-label>
+            <input matInput #searchValue type="text">
+          </mat-form-field>
+        </div>
+        <div class="fullWidth flex-row mb-5 flex-justify-space-between">
+          <button [disabled]="!searchValue.value" mat-raised-button color="primary"
+            class="flex-row flex-align-center btn-filter-action" (click)="applyFilter(dataColumnName)">
+            <mat-icon>check</mat-icon>
+            <label>filter</label>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </mat-menu>
+</div>
+<ng-template #editState let-modal>
+  <app-edit-state></app-edit-state>
+</ng-template>
+<ng-template #deleteState let-modal>
+  <app-delete-state></app-delete-state>
+</ng-template>
+<ng-template #addState let-modal>
+  <app-add-state></app-add-state>
+</ng-template>
+

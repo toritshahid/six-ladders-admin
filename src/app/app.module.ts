@@ -29,6 +29,7 @@ import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule} from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CdkTableModule } from '@angular/cdk/table';
 import { MatCardModule } from '@angular/material/card'
 import {
   GoogleLoginProvider,
@@ -37,6 +38,19 @@ import {
   SocialAuthServiceConfig
 } from 'angularx-social-login';
 import { AuthInterceptor } from './shared/authconfig.interceptor';
+import { ViewCitiesComponent } from './city/view-cities/view-cities.component';
+import { ViewEducationComponent } from './Education/view-education/view-education.component';
+import { ViewIndustryComponent } from './Industry/view-industry/view-industry.component';
+import { ViewStateComponent } from './state/view-state/view-state.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule} from '@angular/material/dialog';
+import { EducationService } from './services/education.service';
+import { CityService } from './services/city.service';
+import { StateService } from './services/state.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +68,13 @@ import { AuthInterceptor } from './shared/authconfig.interceptor';
     AddCityComponent,
     DeleteCityCityComponent,
     SingupComponent,
-    LoginComponent
+    LoginComponent,
+    ViewCitiesComponent,
+    ViewEducationComponent,
+    ViewIndustryComponent,
+    ViewStateComponent,
+
+
 
   ],
   imports: [
@@ -66,13 +86,22 @@ import { AuthInterceptor } from './shared/authconfig.interceptor';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    MatInputModule,
     MatButtonModule,
+    MatIconModule,
+    CdkTableModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatMenuModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatInputModule,
     MatFormFieldModule,
     MatCardModule,
-    SocialLoginModule
   ],
-  providers: [IndustryService,{
+  providers: [IndustryService, EducationService, CityService, StateService,{
     provide: 'SocialAuthServiceConfig',
     useValue: {
       autoLogin: false,
