@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
 import { IndustryService } from './services/industry.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddEducationComponent } from './Education/add-education/add-education.component';
 import { DeleteComponent } from './Education/delete/delete.component';
 import {  ReactiveFormsModule } from '@angular/forms';
@@ -36,6 +36,7 @@ import {
   SocialLoginModule,
   SocialAuthServiceConfig
 } from 'angularx-social-login';
+import { AuthInterceptor } from './shared/authconfig.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +89,11 @@ import {
         }
       ]
     } as SocialAuthServiceConfig,
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
   }],
   bootstrap: [AppComponent]
 })

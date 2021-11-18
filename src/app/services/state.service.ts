@@ -38,14 +38,14 @@ export class StateService {
     )
   }
   getDuplicateStates(name: any): Observable<State> {
-    return this.http.get<State>(this.apiURL + '/CheckDuplicateName/'+name)
+    return this.http.get<State>(this.apiURL + '/CheckDuplicateName/'+name,{ 'headers': this.headers2 })
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
   getStateById(id: any): Observable<State> {
-    return this.http.get<State>(this.apiURL + 'GetAll/'+id)
+    return this.http.get<State>(this.apiURL + 'GetAll/'+id,{ 'headers': this.headers2 })
     .pipe(
       retry(1),
       catchError(this.handleError)
